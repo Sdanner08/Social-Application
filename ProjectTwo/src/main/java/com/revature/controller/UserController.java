@@ -1,5 +1,8 @@
 package com.revature.controller;
 
+import com.revature.service.UserServiceImpl;
+import com.revature.service.UserServiceInterface;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.stream.Collectors;
@@ -16,10 +19,10 @@ public class UserController {
     //Please work.
 
     private static UserController userController;
-    InterfaceUserService userService;
+    UserServiceInterface userService;
 
     private UserController() {
-        userService = new UserService();
+        userService = new UserServiceImpl();
     }
 
     public static UserController getInstance() {
