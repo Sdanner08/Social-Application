@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!--All hibernate configurations go inside here-->
+<hibernate-configuration>
+    <!--JDBC Connection-->
+    <session-factory>
+        <!--Working name for Database-->
+        <property name="hibernate.connection.url">"jdbc:postgresql://" + System.getenv("POSTGRES_URI") + "/socialApp"</property>
+        <property name="hibernate.connection.url">System.getenv("POSTGRES_USERNAME");</property>
+        <property name="hibernate.connection.password">System.getenv("POSTGRES_PASSWORD")</property>
+
+    </session-factory>
+
+</hibernate-configuration>
