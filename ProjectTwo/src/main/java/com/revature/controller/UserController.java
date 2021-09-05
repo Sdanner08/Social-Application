@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.model.Response;
 import com.revature.service.UserServiceImpl;
 import com.revature.service.UserServiceInterface;
 
@@ -10,9 +12,8 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.stream.Collectors;
+
+import com.revature.model.User;
 
 public class UserController {
 
@@ -47,8 +48,6 @@ public class UserController {
         User user = new ObjectMapper().readValue(requestBody, User.class);
 
         User tempUser = userService.login(user);
-
-
 
         if (tempUser != null) {
             //create session if successful
