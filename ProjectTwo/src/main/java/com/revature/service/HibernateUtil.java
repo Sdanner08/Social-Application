@@ -1,9 +1,12 @@
 package com.revature.service;
 
+import com.revature.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+
 public class HibernateUtil {
+    User user = new User();
     //set up session factory
     public static SessionFactory sf =
             new org.hibernate.cfg.Configuration()
