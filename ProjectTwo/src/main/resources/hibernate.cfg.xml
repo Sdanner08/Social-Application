@@ -7,10 +7,36 @@
     <!--JDBC Connection-->
     <session-factory>
         <!--Working name for Database-->
-        <property name="hibernate.connection.url">"jdbc:postgresql://" + System.getenv("POSTGRES_URI") + "/socialApp"</property>
-        <property name="hibernate.connection.url">System.getenv("POSTGRES_USERNAME");</property>
-        <property name="hibernate.connection.password">System.getenv("POSTGRES_PASSWORD")</property>
+        <!--This will be for deployment-->
+<!--        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://revaturedatabase.c4rkm7br3whq.us-east-2.rds.amazonaws.com/socialApp</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">p4ssw0rd</property>-->
 
+        <!--H2 setup-->
+       <property name="connection.driver_class">org.h2.Driver</property>
+        <!--You will need to update the code for your own desktop-->
+        <property name="connection.url">jdbc:h2:C:\\Users\\13522\\Desktop\\h2db</property>
+        <property name="connection.username">sa</property>
+        <property name="connection.password">sa</property>
+
+        <!--Shows tables being changed-->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!--Select our SQL dialect-->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!--hbm2ddl is set to create for now-->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <!--Set pool size to 20 which is default will change later if needed-->
+<!--        <property name="hibernate.connection.pool_size">20</property>-->
+
+        <!--Mapping the models-->
+        <mapping class="com.revature.model.User"/>
+        <mapping class="com.revature.model.Post"/>
+        <mapping class="com.revature.model.Comment"/>
     </session-factory>
 
 </hibernate-configuration>
