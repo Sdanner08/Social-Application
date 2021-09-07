@@ -2,8 +2,9 @@ package com.revature.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Response;
+import com.revature.service.UserService;
 import com.revature.service.UserServiceImpl;
-import com.revature.service.UserServiceInterface;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +21,7 @@ public class UserController {
     //Please work.
 
     private static UserController userController;
-    UserServiceInterface userService;
+    UserService userService;
 
     private UserController() {
         userService = new UserServiceImpl();

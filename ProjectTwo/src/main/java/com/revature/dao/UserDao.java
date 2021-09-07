@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserDao {
 
     //Check if User Is in Database
-    User getOneUser(String uname, String pass);
+    User login(String uname, String pass);
 
     //Add Users //Creates
     void createUser (User user);

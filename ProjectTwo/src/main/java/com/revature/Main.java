@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-    public static UserService userService = new UserService();
+    //public static UserService userService = new UserService();
     public static PostService postService = new PostService();
     public static CommentService commentService = new CommentService();
 
@@ -81,7 +81,7 @@ public class Main {
         commentService.addComment(c4);
 
 
-        userService.createUser(user1);
+       // userService.register(user1);
         /*userService.createUser(user2);*/
     }
 
