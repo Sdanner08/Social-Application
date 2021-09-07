@@ -1,29 +1,19 @@
 package com.revature.model;
 
-
-
-/*	User Model
-            Integer Id: serial
-            String name not null
-            String username Unique not null
-            String password not null
-            String email Unique not null
-            String aboutme char(250) not null
-            Date Birthday int
-            String picUrl not null*/
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="users")
 public class User {
     @Id
-    @Column(name="user_id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer userId;
     @Column(name="username",unique = true,nullable = false)
     private String username;
     @Column(name="password",nullable = false)
@@ -38,9 +28,14 @@ public class User {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy") //Jacson to format our birthday
     private Date bday;
     //////////////////Nullable left empty until we get it working.////////////////////
-    @Column(name="lastname")
+    @Column(name="proPicUrl")
     private String proPicUrl;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Post> postList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> commentList = new ArrayList<>();
 
     //no arg constructor
     public User() {
@@ -52,9 +47,29 @@ public class User {
         this.password = password;
     }
 
-    //constructor for getting all the users info
-    public User(Integer id, String username, String password, String email, String firstName, String lastName, Date bday, String proPicUrl) {
-        this.id = id;
+    //Modified Constructor
+    public User(String username, String password, String email, String firstName, String lastName, Date bday, String proPicUrl, List<Post> postList, List<Comment> commentList) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bday = bday;
+        this.proPicUrl = proPicUrl;
+        this.postList = postList;
+        this.commentList = commentList;
+    }
+
+    public User(String username, String password, String email, String firstName, String lastName, Date bday) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bday = bday;
+    }
+    //Modified Constructor
+    public User(String username, String password, String email, String firstName, String lastName, Date bday, String proPicUrl) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -64,14 +79,27 @@ public class User {
         this.proPicUrl = proPicUrl;
     }
 
-    //getters and setters
+    //constructor for getting all the users info
+    public User(Integer userId, String username, String password, String email, String firstName, String lastName, Date bday, String proPicUrl, List<Post> postList) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bday = bday;
+        this.proPicUrl = proPicUrl;
+        this.postList = postList;
+    }
+    //Modified Constructor
 
-    public Integer getId() {
-        return id;
+    //getters and setters
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -130,12 +158,21 @@ public class User {
         this.proPicUrl = proPicUrl;
     }
 
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
     //toString
+
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
@@ -143,6 +180,7 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", bday=" + bday +
                 ", proPicUrl='" + proPicUrl + '\'' +
+                ", postList=" + postList +
                 '}';
     }
 }
