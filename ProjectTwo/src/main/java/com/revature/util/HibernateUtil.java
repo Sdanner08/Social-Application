@@ -1,15 +1,15 @@
-package com.revature.service;
+package com.revature.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     //set up session factory
     public static SessionFactory sf =
-            new org.hibernate.cfg.Configuration()
-                .configure("hibernate.cfg.xml")
-                .setProperty("hibernate.connection.username", "postgres")
-                .buildSessionFactory();
+            new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .buildSessionFactory();
 
     //Initialize Sessions
     private static Session session;
@@ -19,12 +19,13 @@ public class HibernateUtil {
         if(session == null){
             session = sf.openSession();
         }
+
         return session;
     }
     //closes session
-    public static void closSession(){
+    public static void closeSession(){
         session.close();
-        session=null;
+        session = null;
         sf.close();
     }
 }
