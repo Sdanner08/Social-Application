@@ -204,61 +204,57 @@ What are we testing?
   	(set up repo - branches)
   	(set up communication paths we want to talk to each other)
   	(Jenkins --Are we using it? this would need groovy??)
-   	1) David - Discord Server set up
-  	2) Shane - Repo set up
-  	3) Angel -
-  	4) Trevor -
+  1) David - Discord Server set up
+  2) Shane - Repo set up
+  3) Angel -
+  4) Trevor -
 
-* 9/5) (weekend - Optional Day off)
-  	(Coding start)
+* 9/5) (weekend - Optional Day off) (Coding start)
   1. David - 
   2. Shane -
   3. Angel -
   4. Trevor -
 
-* 9/6)	(Models, Database, Dao, DaoImpl, ???? delivery)
-  	(Rough idea of Frontend look)
-   	1) David - AWS Setup (Dao, DaoImp depending on spring)
-  	2) Shane - Models, Database, H2
-  	3) Angel - We will need to deploy Angular as well...
-  	4) Trevor -
+* 9/6)	(Models, Database, Dao, DaoImpl, ???? delivery) (Rough idea of Frontend look)
+  1) David - AWS Setup (Dao, DaoImp depending on spring)
+  2) Shane - Models, Database, H2
+  3) Angel - We will need to deploy Angular as well...
+  4) Trevor -
 
-* 9/7)	(Rough set up of front end)
-  	(Connection endpoints delivered)
-   	1) David - 
-  	2) Shane - endpoints??
-  	3) Angel -
-  	4) Trevor -
-
+* 9/7)	(Rough set up of front end) (Connection endpoints delivered)
+  1) David - 
+  2) Shane - endpoints??
+  3) Angel -
+  4) Trevor -
 * 9/8)
-  	1) David - 
-    	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/9)
-  	1) David - 
-    	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/10)
-  	1) David - 
-    	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/11)
-  	1) David - 
-    	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/12)
-  	1) David - 
-    	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/13)
   1. David - 
@@ -267,22 +263,22 @@ What are we testing?
   4. Trevor -
 
 * 9/14)(debugging)
-  	1) David -
-  	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David -
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/15)(deployment)
-  	1) David - 
-  	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+  2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/16)(presentation coordination)
-  	1) David - 
-  	2) Shane -
-  	3) Angel -
-  	4) Trevor -
+  1) David - 
+   2) Shane -
+  3) Angel -
+  4) Trevor -
 
 * 9/17) This is Presentation Day
   1. David - 
