@@ -65,7 +65,13 @@
             <version>5.5.6.Final</version>
         </dependency>
         <!-- end::hibernate -->
-
+        <!-- tag::javax -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <!-- end::javax -->
         <!-- tag::h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -73,6 +79,7 @@
             <version>1.4.200</version>
         </dependency>
         <!-- end::h2 -->
+
     </dependencies>
 
 
