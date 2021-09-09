@@ -5,6 +5,10 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.revature.model.User;
 
 import java.io.File;
 
@@ -30,7 +34,6 @@ public class S3Service {
     private void uploadFile(File file, String pathName){
         System.out.println("S3service.uploadFile");
         s3Client.putObject(bucketName, pathName, file);
-
     }
 
     //The pathname example in kevin's explanation of this concept was:
@@ -65,4 +68,17 @@ public class S3Service {
         uploadFile(file, pathName);
         return pathName;
     }
+
+    public String uploadProfileImage(User user, File file){
+        return uploadProfileImage(user.getUsername(), file);
+    }
+
+    public String uploadImage(User user, File file){
+        return uploadImage(user.getUsername(), file);
+    }
+
+    public String uploadVideo(User user, File file){
+        return uploadVideo(user.getUsername(), file);
+    }
+
 }

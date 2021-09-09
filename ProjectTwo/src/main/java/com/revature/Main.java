@@ -5,8 +5,10 @@ import com.revature.model.Post;
 import com.revature.model.User;
 import com.revature.service.CommentService;
 import com.revature.service.PostService;
+import com.revature.service.S3Service;
 import com.revature.service.UserService;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,12 +17,15 @@ public class Main {
     public static UserService userService = new UserService();
     public static PostService postService = new PostService();
     public static CommentService commentService = new CommentService();
+    public static S3Service s3Service = new S3Service();
 
     public static void main(String[] args) {
         insertInitialValues();
     }
 
     public static void insertInitialValues(){
+
+
 
         //Post
         Post p1 = new Post("https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/evolving_google_identity_2x1.jpg","Text Example 1");
@@ -83,6 +88,16 @@ public class Main {
 
         userService.createUser(user1);
         /*userService.createUser(user2);*/
+
+        /*Testing S3Service*/
+        //David: I have not run this test yet, because UserController is broken in my copy of the program.
+        //David: I will test it as soon as I get the thing updated.
+        //David: Danke!
+
+        //Upload Cup.png to the bucket as both an image and a profile image
+        File testImage = new File("Cup.png");
+        String imagePath = s3Service.uploadImage("SomeGuy", testImage); //Can also just pass a User object if you prefer
+        String profileImagePath = s3Service.uploadProfileImage("SomeGuy", testImage);
     }
 
 }
