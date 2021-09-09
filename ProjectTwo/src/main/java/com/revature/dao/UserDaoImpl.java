@@ -8,11 +8,11 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao{
-    @Override
+    /*@Override
     public User getOneUser(String uname, String pass) {
         Session session = HibernateUtil.getSession();
         return session.createQuery("from User where username = '" + uname +"'" + "and"+ "password = '"+ pass +"'", User.class).getSingleResult();
-    }
+    }*/
 
     @Override
     public void createUser(User user) {
