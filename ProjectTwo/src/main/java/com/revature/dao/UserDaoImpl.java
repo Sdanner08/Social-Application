@@ -10,13 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDaoImpl implements UserDao{
 
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public UserDaoImpl(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-    }
-
     @Override
     public User login(User user) {
        String name = user.getUsername();
