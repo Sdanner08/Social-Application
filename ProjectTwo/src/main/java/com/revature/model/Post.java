@@ -69,7 +69,7 @@ public class Post {
 
     //All arg constructor
     public Post(Integer id, String postPicUrl, String postText, String postYouUrl, User user, List<Comment> comment) {
-        this.id = id;
+        this.postId = id;
         this.postPicUrl = postPicUrl;
         this.postText = postText;
         this.postYouUrl = postYouUrl;

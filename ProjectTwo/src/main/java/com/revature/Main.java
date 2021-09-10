@@ -14,9 +14,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-    public static UserService userService = new UserService();
-    public static PostService postService = new PostService();
-    public static CommentService commentService = new CommentService();
+    //public static UserService userService = new UserService();
+    //public static PostService postService = new PostService();
+    //public static CommentService commentService = new CommentService();
     public static S3Service s3Service = new S3Service();
 
     public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class Main {
     }
 
     public static void insertInitialValues(){
-
+        /*
 
 
         //Post
@@ -51,7 +51,7 @@ public class Main {
         p1.setComment(commentList);
         p1.setUser(user1);
         c1.setPost(p1);
-        c1.setUser(user1);
+        c1.setUser(user1);*/
 
 
 /*        List<Post> postList = new ArrayList<>();
@@ -74,7 +74,7 @@ public class Main {
 */
 
 
-
+/*
         postService.createPost(p1);
         postService.createPost(p2);
         postService.createPost(p3);
@@ -83,10 +83,10 @@ public class Main {
         commentService.addComment(c1);
         commentService.addComment(c2);
         commentService.addComment(c3);
-        commentService.addComment(c4);
+        commentService.addComment(c4);*/
 
 
-        userService.createUser(user1);
+        //userService.createUser(user1);
         /*userService.createUser(user2);*/
 
         /*Testing S3Service*/

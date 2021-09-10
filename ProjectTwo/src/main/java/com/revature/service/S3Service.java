@@ -21,13 +21,22 @@ public class S3Service {
     private String region = "us-east-2";
     private String bucketName = "teamwaterbucket";
 
-    BasicAWSCredentials awsCredentials = new BasicAWSCredentials(awsID, awsKey);
+    BasicAWSCredentials awsCredentials;
 
-    AmazonS3 s3Client = AmazonS3ClientBuilder
-            .standard()
-            .withRegion(Regions.fromName(region))
-            .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
-            .build();
+    AmazonS3 s3Client;
+
+    public S3Service(){
+        System.out.println("S3Service Constructor");
+
+        awsCredentials = new BasicAWSCredentials(awsID, awsKey);
+
+        s3Client = AmazonS3ClientBuilder
+                .standard()
+                .withRegion(Regions.fromName(region))
+                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                .build();
+
+    }
 
     //We'll need the bucket name whenever we try to upload something.
 
@@ -50,21 +59,21 @@ public class S3Service {
 
     public String uploadProfileImage(String username, File file){
         System.out.println("S3service.uploadProfileImage");
-        String pathName = "/users/" + username + "/images/profile/" + file.getName();
+        String pathName = "users/" + username + "/images/profile/" + file.getName();
         uploadFile(file, pathName);
         return pathName;
     }
 
     public String uploadImage(String username, File file){
         System.out.println("S3service.uploadImage");
-        String pathName = "/users/" + username + "/images/" + file.getName();
+        String pathName = "users/" + username + "/images/" + file.getName();
         uploadFile(file, pathName);
         return pathName;
     }
 
     public String uploadVideo(String username, File file){
         System.out.println("S3service.uploadVideo");
-        String pathName = "/users/" + username + "/videos/" + file.getName();
+        String pathName = "users/" + username + "/videos/" + file.getName();
         uploadFile(file, pathName);
         return pathName;
     }
