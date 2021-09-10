@@ -16,8 +16,8 @@ public class S3Service {
 
     //We'll probably need these to be environment variables when we deploy but while we're testing this is fine.
 
-    private String awsID = "also testId";
-    private String awsKey = "testid";
+    private String awsID = System.getenv("TEAMWATER_ACCESSKEY");
+    private String awsKey = System.getenv("TEAMWATER_SECRETKEY");
     private String region = "us-east-2";
     private String bucketName = "teamwaterbucket";
 
