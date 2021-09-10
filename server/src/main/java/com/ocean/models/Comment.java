@@ -1,8 +1,6 @@
-package com.revature.model;
-
+package com.ocean.models;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Getter
@@ -11,8 +9,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="comment")
+@Table(name="comments")
 public class Comment {
+
     @Id
     @Column(name="commentId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +21,11 @@ public class Comment {
     private String commText;
 
     @ManyToOne
-    @MapsId("postId")
+    @JoinColumn(name="postId", nullable = false)
     private Post post;
 
     @ManyToOne
-    @MapsId("userId")
+    @JoinColumn(name="userId", nullable = false)
     private User user;
 
     //Modified Constructor

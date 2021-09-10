@@ -1,49 +1,49 @@
 package com.revature.dao;
 
 import com.revature.model.User;
-import com.revature.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
+@Repository("userDao")
+@Transactional
 public class UserDaoImpl implements UserDao{
-    @Override
-    public User getOneUser(String uname, String pass) {
-        Session session = HibernateUtil.getSession();
-        return session.createQuery("from User where username = '" + uname +"'" + "and"+ "password = '"+ pass +"'", User.class).getSingleResult();
+
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public UserDaoImpl(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public void createUser(User user) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
+    public User login(User user) {
+       String name = user.getUsername();
+       String pass = user.getPassword();
+        return sessionFactory.getCurrentSession()
+                .createQuery("from User where username = '" + name +"'" + "and"+ "password = '"+ pass +"'", User.class).getSingleResult();
+    }
 
-        session.save(user);
-
-        tx.commit();
+    @Override
+    public User createUser(User user) {
+       return (User) this.sessionFactory.getCurrentSession().save(user);
     }
 
     @Override
     public User forGotInfo(String username) {
-        Session session = HibernateUtil.getSession();
-        return session.createQuery("from User where username= '" + username + "'", User.class).getSingleResult();
+        return sessionFactory.getCurrentSession()
+                .createQuery("from User where username= '" + username + "'", User.class).getSingleResult();
     }
 
     @Override
-    public void updateUser(String uname, String pass) {
-        Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
-
-        User user = session.load(User.class, uname);
-        user.setPassword(pass);
-        session.update(user);
-        tx.commit();
+    public void updateUser(User user) {
+      sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
 
     @Override
-    public List<User> getUserById(Integer userid) {
-        Session session = HibernateUtil.getSession();
-        return session.createQuery("from User where" + userid,User.class).list();
+    public User getUserById(Integer userid) {
+        return sessionFactory.getCurrentSession()
+                .get(User.class, userid);
     }
 }
