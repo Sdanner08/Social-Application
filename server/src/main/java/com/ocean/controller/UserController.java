@@ -1,49 +1,25 @@
-package com.revature.controller;
+package com.ocean.controller;
 
-import com.revature.model.Response;
-import com.revature.model.User;
-import com.revature.service.UserService;
+import com.ocean.models.Response;
+import com.ocean.models.User;
+import com.ocean.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @RestController("userController")
-@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
+@RequestMapping(value= "api")
+/*@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")*/
 public class UserController {
+
     private UserService userService;
 
     @Autowired
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
-
-    @PostMapping("user")
-    public Response createUser(@RequestBody User user){
-        this.userService.register(user);
-        return new Response(true, "user has been created", null);
-
-
-    }
-}
-/*
-        Do we still need this????????
-
-    public static UserController getInstance() {
-        System.out.println("UserController.getInstance()");
-
-        if (userController == null)
-            userController = new UserController();
-
-        System.out.println("UserController.getInstance() (not null)");
-
-        return userController;
-    }*/
-
+    public UserController(UserService userService){ this.userService = userService;}
 
     //Creates a Session for the user logged in
-/*    @GetMapping("check-session")
+    @GetMapping("check-session")
     public Response checkSession(HttpSession session){
         Response response;
         User user = (User) session.getAttribute("loggedInUser");
@@ -53,14 +29,13 @@ public class UserController {
             response = new Response(false, "session not found", null);
         }
         return response;
-    }*/
+    }
 
     //Checks to see if user is in database other wise it'll reject their log in
-/*    @GetMapping("login")
+    @GetMapping("login")
     public Response login (HttpSession session, @RequestBody User user) {
         Response response;
         User tempUser = this.userService.login(user);
-
         if (tempUser != null) {
             session.setAttribute("loggedInUser", user);
             response = new Response(true, "logged In and session created", tempUser);
@@ -70,30 +45,29 @@ public class UserController {
         return response;
     }
 
-    //Loges the user out and ends the session
+    //Logs the user out and ends the session
     @GetMapping("logout")
     public Response logout(HttpSession session){
         session.setAttribute("loggedInUser", null);
         return new Response(true,"You have logged out and session terminated", null);
-    }*/
+    }
 
     //Creates a new user
-/*    @PostMapping("register")
-    public Response register(@RequestBody User user) {
+    @PostMapping("user")
+    public Response createUser(@RequestBody User user) {
         Response response;
-        User tempUser = this.userService.register(user);
-
+        User tempUser = this.userService.createUser(user);
         if (tempUser != null) {
-            response = new Response(true, "user has been created", null);
+            response = new Response(true, "user has been created", user);
         } else {
             response = new Response(false, "This User already exists", null);
         }
         return response;
-    }*/
+    }
 
     //Checks username in database and will send them email with password
- /*   @GetMapping("forgot")
-    public Response forGotInfo(@RequestBody String username){
+    @GetMapping("forgot/{username}")
+    public Response forGotInfo(@PathVariable String username){
         Response response;
         User tempUser = this.userService.forGotInfo(username);
 
@@ -111,14 +85,15 @@ public class UserController {
     @PutMapping("updateUser")
     public Response updateUser(@RequestBody User user){
         Response response;
-        this.userService.updateUser(user);
-        if(this.userService.getUserById(user.getUserId()) == user){
+        User updateUser = this.userService.updateUser(user);
+        if(updateUser == user){
+            System.out.println("--------------90------------------");
+            System.out.println(updateUser);
             return new Response(true,"Profile has been updated",user);
         }else{
             return new Response(false,"Profile has not been updated", null);
         }
     }
-
 
     //Will get user with matching Id
     @GetMapping("user/{id}")
@@ -132,5 +107,4 @@ public class UserController {
         }
         return response;
     }
-*/
-
+}

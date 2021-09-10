@@ -2,22 +2,20 @@ package com.revature.dao;
 
 import com.revature.model.User;
 
-import java.util.List;
-
 public interface UserDao {
 
     //Check if User Is in Database
-    User login(String uname, String pass);
+    User login(User user);
 
     //Add Users //Creates
-    void createUser (User user);
+    User createUser (User user);
 
     //Get User by username
     User forGotInfo(String username);
 
-    //Update User password
-    void updateUser(String uname, String pass);
+    //Update User info
+    void updateUser(User user);
 
-    //Get Users by ID
-    List<User> getUserById(Integer userId);
+    //Get User by ID
+    User getUserById(Integer userId);
 }

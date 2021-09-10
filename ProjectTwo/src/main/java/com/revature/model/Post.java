@@ -1,32 +1,46 @@
 package com.revature.model;
 
+import lombok.*;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="post")
 public class Post {
     @Id
-    @Column(name="post_id")
+    @Column(name="postId")
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Integer id;
+    private Integer postId;
     @Column(name="postPicUrl")
     private String postPicUrl;
     @Column(name="postText", nullable=false)
     private String postText;
     @Column(name="postYouUrl") //youtube url link
     private String postYouUrl;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @MapsId("userId")
     private User user;
-    @OneToMany(mappedBy= "post", cascade = CascadeType.ALL)
-    private List<Comment> comment = new ArrayList<>();
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Comment> commentList = new ArrayList<>();
+
+/*    @OneToMany(cascade = CascadeType.ALL)
+    private List<Like> LikeList = new ArrayList<>();*/
 
 
-    //no arg constructor
-    public Post() {
-    }
-    //Modified Constructor
+
+
+
+   //Modified Constructor
     public Post(Integer id, String postPicUrl, String postText, User user) {
         this.id = id;
         this.postPicUrl = postPicUrl;
@@ -61,67 +75,5 @@ public class Post {
         this.postYouUrl = postYouUrl;
         this.user = user;
         this.comment = comment;
-    }
-
-    //Getters and Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getPostPicUrl() {
-        return postPicUrl;
-    }
-
-    public void setPostPicUrl(String postPicUrl) {
-        this.postPicUrl = postPicUrl;
-    }
-
-    public String getPostText() {
-        return postText;
-    }
-
-    public void setPostText(String postText) {
-        this.postText = postText;
-    }
-
-    public String getPostYouUrl() {
-        return postYouUrl;
-    }
-
-    public void setPostYouUrl(String postYouUrl) {
-        this.postYouUrl = postYouUrl;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Comment> getComment() {
-        return comment;
-    }
-
-    public void setComment(List<Comment> comment) {
-        this.comment = comment;
-    }
-
-    //ToString
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", postPicUrl='" + postPicUrl + '\'' +
-                ", postText='" + postText + '\'' +
-                ", postYouUrl='" + postYouUrl + '\'' +
-                ", user=" + user +
-                ", comment=" + comment +
-                '}';
     }
 }

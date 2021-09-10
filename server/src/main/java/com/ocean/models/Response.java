@@ -1,4 +1,4 @@
-package com.revature.model;
+package com.ocean.models;
 
 import lombok.*;
 
@@ -8,7 +8,11 @@ import lombok.*;
 @Setter
 @ToString
 public class Response {
+
     Boolean success;
+
     String message;
+
     Object data;
+
 }

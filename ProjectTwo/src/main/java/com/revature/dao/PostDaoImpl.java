@@ -1,37 +1,39 @@
 package com.revature.dao;
 
 import com.revature.model.Post;
-import com.revature.util.HibernateUtil;
-import javafx.geometry.Pos;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
+@Repository("postDao")
+@Transactional
 public class PostDaoImpl implements PostDao{
     @Override
     public void createPost(Post post) {
-        Session session = HibernateUtil.getSession();
+/*        Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
         session.save(post);
 
-        tx.commit();
+        tx.commit();*/
     }
 
     @Override
     public void deletePost(Integer postId) {
-        Session session = HibernateUtil.getSession();
+/*        Session session = HibernateUtil.getSession();
         Transaction tx = session.beginTransaction();
 
         session.delete("from Post where" + postId);
 
-        tx.commit();
+        tx.commit();*/
     }
 
     @Override
     public List<Post> allUsersPosts(Integer userId) {
-        Session session = HibernateUtil.getSession();
-        return session.createQuery("from Post where" + userId, Post.class).list();
+/*        Session session = HibernateUtil.getSession();
+        return session.createQuery("from Post where" + userId, Post.class).list();*/
+        return null;
     }
 }
