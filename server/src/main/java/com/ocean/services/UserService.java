@@ -32,16 +32,16 @@ public class UserService {
     public User createUser(User user) {
         //check to see if user is already in database
         User tempUser = checkForUser(user.getUsername());
-            //If username is not found in database it will create the user
-            if (tempUser == null) {
-                return this.userDao.save(user);
-            }
+        //If username is not found in database it will create the user
+        if (tempUser == null) {
+            return this.userDao.save(user);
+        }
         //if tempUser returns something from database it'll return null as username is in use
         return null;
     }
 
     //If User forgot login info
-        public User forGotInfo(String username) {
+    public User forGotInfo(String username) {
         //check to see if user is already in database
         User tempUser = checkForUser(username);
         if(tempUser != null){
@@ -60,9 +60,9 @@ public class UserService {
             //To make sure the ID doesn't get changed by anyone
             user.setUserId(dataBaseUser.getUserId());
             //Executes the update
-           this.userDao.save(user);
-           //Returns the updated user
-           return user;
+            this.userDao.save(user);
+            //Returns the updated user
+            return user;
         }
         return null;
     }

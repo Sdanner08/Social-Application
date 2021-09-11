@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository("userDao")
 @Transactional
 public interface UserDao extends JpaRepository<User, Integer> {
+    //Find user by username
     User findUserByUsername(String username);
-
-    //User updateUserById(User user);
-   // void updateDataBaseUser(User user);
 }
+
