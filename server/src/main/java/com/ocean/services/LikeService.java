@@ -39,7 +39,5 @@ public class LikeService {
         }
         return false;
     }
-
-
 }
 
