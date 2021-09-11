@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("commentController")
-@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
+@RequestMapping(value= "api")
+//@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class CommentController {
     private CommentService commentService;
 
@@ -19,12 +20,14 @@ public class CommentController {
     public Response createComment(@RequestBody Comment comment){
         return null;
     }
+
     //Read a Comment
     @GetMapping("comment/{commentId}")
     public Response lookForCommentById(@PathVariable Integer commentId){
         return null;
     }
     //Get Comment by UserId
+
     @GetMapping("comment/user/{userId}")
     public Response lookForCommentByUserId(@PathVariable Integer userId){
         return null;

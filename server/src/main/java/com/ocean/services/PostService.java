@@ -26,6 +26,7 @@ public class PostService {
     public Post getPostById(Integer postId) {
         return this.postDao.findById(postId).orElse(null);
     }
+
     //Get Post by UserId
     public List<Post> getPostByUserId(Integer userId) {
         List<Post> allThisUserPost = this.postDao.getPostByUserId(userId);
@@ -55,7 +56,7 @@ public class PostService {
 
     //Delete a post
     public Post deletePost(Integer postId) {
-        Post checkDelete = this.postDao.findById(postId).orElse(null);;
+        Post checkDelete = this.postDao.findById(postId).orElse(null);
         if(checkDelete != null){
             this.postDao.deleteById(postId);
             return checkDelete;
