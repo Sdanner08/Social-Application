@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController("likeController")
 @RequestMapping(value= "api")
-//@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class LikeController {
     private LikeService likeService;
 

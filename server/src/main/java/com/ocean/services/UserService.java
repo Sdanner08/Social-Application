@@ -3,6 +3,7 @@ package com.ocean.services;
 import com.ocean.models.User;
 import com.ocean.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -11,14 +12,19 @@ public class UserService {
 
     @Autowired
     public UserService(UserDao userDao){this.userDao = userDao;}
-
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     //Login
     public User login(User user){
         User tempUser = checkForUser(user.getUsername());
         //checks if the search returns a user object
         if(tempUser != null){
             //Checks to make sure their passwords match
-            if(tempUser.getPassword().equals(user.getPassword())){
+            System.out.println("-------------");
+            System.out.println(tempUser.getPassword());
+            System.out.println("-------------");
+            boolean isPasswordMatch = passwordEncoder.matches(user.getPassword(), tempUser.getPassword());
+            System.out.println(isPasswordMatch);
+            if(isPasswordMatch == true){
                 return tempUser;
             }
         }
@@ -34,6 +40,10 @@ public class UserService {
         User tempUser = checkForUser(user.getUsername());
         //If username is not found in database it will create the user
         if (tempUser == null) {
+            String bcPass = user.getPassword();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encode = passwordEncoder.encode(bcPass);
+            user.setPassword(encode);
             return this.userDao.save(user);
         }
         //if tempUser returns something from database it'll return null as username is in use

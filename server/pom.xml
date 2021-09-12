@@ -23,14 +23,44 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-data-jpa-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- end::spring-boot-starter-data-jpa -->
 		<!-- tag::spring-boot-starter-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-framework-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- end::spring-boot-starter-web -->
+		<!-- tag::spring-boot-starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- tag::spring-boot-starter -->
+		<!-- tag::log4j2 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+		<!-- tag::log4j2 -->
 		<!-- tag::spring-boot-starter-test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,6 +73,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.3.9</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-webmvc-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- end::spring-webmvc -->
 		<!-- tag::spring-beans -->
@@ -52,6 +88,13 @@
 			<version>5.3.9</version>
 		</dependency>
 		<!-- end::spring-beans -->
+		<!-- tag::spring-security-crypto -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>5.5.2</version>
+		</dependency>
+		<!-- end::spring-security-crypto -->
 		<!-- tag::spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
