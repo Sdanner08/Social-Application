@@ -11,7 +11,7 @@ public class S3Test {
     public void uploadImage(){
         File imageTest = new File("ImageTest.jpg");
 
-        s3.uploadImage("UploadImageTestUser", imageTest);
+        System.out.println("PathName = " + s3.uploadImage("UploadImageTestUser", imageTest));
     }
 
     @Test

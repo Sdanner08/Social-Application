@@ -17,6 +17,10 @@ public class S3Service {
     private String awsKey = System.getenv("TEAMWATER_SECRETKEY");
     private String region = "us-east-2";
     private String bucketName = "teamwaterbucket";
+    private String bucketUrl = "https://teamwaterbucket.s3.us-east-2.amazonaws.com/";
+
+    //https://teamwaterbucket.s3.us-east-2.amazonaws.com/users/UploadImageTestUser/images/ImageTest.jpg
+    //PathName = users/UploadImageTestUser/images/ImageTest.jpg
 
     BasicAWSCredentials awsCredentials;
 
@@ -37,9 +41,10 @@ public class S3Service {
 
     //We'll need the bucket name whenever we try to upload something.
 
-    private void uploadFile(File file, String pathName){
+    private String uploadFile(File file, String pathName){
         System.out.println("S3service.uploadFile");
         s3Client.putObject(bucketName, pathName, file);
+        return bucketUrl+pathName;
     }
 
     //The pathname example in kevin's explanation of this concept was:
@@ -57,22 +62,20 @@ public class S3Service {
     public String uploadProfileImage(String username, File file){
         System.out.println("S3service.uploadProfileImage");
         String pathName = "users/" + username + "/images/profile/" + file.getName();
-        uploadFile(file, pathName);
-        return pathName;
+        return uploadFile(file, pathName);
     }
 
     public String uploadImage(String username, File file){
         System.out.println("S3service.uploadImage");
         String pathName = "users/" + username + "/images/" + file.getName();
-        uploadFile(file, pathName);
-        return pathName;
+        return uploadFile(file, pathName);
     }
 
     public String uploadVideo(String username, File file){
         System.out.println("S3service.uploadVideo");
         String pathName = "users/" + username + "/videos/" + file.getName();
-        uploadFile(file, pathName);
-        return pathName;
+        return uploadFile(file, pathName);
+
     }
 
     public String uploadProfileImage(User user, File file){
