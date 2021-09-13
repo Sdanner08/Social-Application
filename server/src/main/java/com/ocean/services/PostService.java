@@ -22,6 +22,14 @@ public class PostService {
         }
         return null;
     }
+    //Get all posts
+    public List<Post> getAllPosts(){
+        List<Post> allPosts = this.postDao.findAll();
+        if(allPosts != null){
+            return allPosts;
+        }
+        return null;
+    }
     //Read a post
     public Post getPostById(Integer postId) {
         return this.postDao.findById(postId).orElse(null);

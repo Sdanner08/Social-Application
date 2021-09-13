@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController("postController")
 @RequestMapping(value= "api")
-//@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class PostController {
 
     private PostService postService;
@@ -28,6 +28,21 @@ public class PostController {
         }else{
             response = new Response(false, "Post was not created", null);
         }
+        return response;
+    }
+
+    //Get All posts
+    @GetMapping("feed")
+    public Response allPosts(){
+        Response response;
+        List<Post> allPosts = this.postService.getAllPosts();
+
+        if(allPosts != null){
+            response = new Response(true, "Here are all posts", allPosts);
+        }else{
+            response = new Response(false, "There was an error getting posts", null);
+        }
+
         return response;
     }
 

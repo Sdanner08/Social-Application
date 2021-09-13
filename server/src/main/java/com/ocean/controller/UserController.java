@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @RestController("userController")
 @RequestMapping(value= "api")
-/*@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")*/
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class UserController {
 
     private UserService userService;
@@ -32,7 +32,7 @@ public class UserController {
     }
 
     //Checks to see if user is in database other wise it'll reject their log in
-    @GetMapping("login")
+    @PostMapping("login")
     public Response login (HttpSession session, @RequestBody User user) {
         Response response;
         User tempUser = this.userService.login(user);
