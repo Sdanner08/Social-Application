@@ -4,6 +4,8 @@ import com.ocean.models.Post;
 import com.ocean.models.Response;
 import com.ocean.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +33,18 @@ public class PostController {
         return response;
     }
 
+    //Get All posts
+    @GetMapping("feed/{pageNumber}")
+    public Response getAllPost(@PathVariable Integer pageNumber, Pageable pageable){
+        Response response;
+        Page<Post> allPosts= this.postService.getAllPosts(pageNumber, pageable);
+        if(allPosts != null){
+            response = new Response(true, "here are 20 posts", allPosts);
+        }else{
+            response = new Response(false,"failed to find that page",null);
+        }
+        return response;
+    }
     //Read a post
     @GetMapping("post/{postId}")
     public Response lookForAPost(@PathVariable Integer postId){

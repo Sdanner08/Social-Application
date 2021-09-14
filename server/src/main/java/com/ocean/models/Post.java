@@ -1,7 +1,11 @@
 package com.ocean.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Getter
@@ -23,6 +27,10 @@ public class Post {
 
     @Column(name="postText", nullable=false)
     private String postText;
+
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    private Date postTime;
 
     @Column(name="postYouUrl") //youtube url link
     private String postYouUrl;

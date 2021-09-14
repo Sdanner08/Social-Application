@@ -3,6 +3,10 @@ package com.ocean.services;
 import com.ocean.models.Post;
 import com.ocean.repository.PostDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +26,17 @@ public class PostService {
         }
         return null;
     }
+
+    //Post for the Feed
+    public Page<Post> getAllPosts(Integer pageNumber, Pageable pageable) {
+        Page<Post> allPosts = this.postDao.findAll(PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "postTime")));
+        if(allPosts != null){
+            return allPosts;
+        }
+        return null;
+    }
+    
+    
     //Read a post
     public Post getPostById(Integer postId) {
         return this.postDao.findById(postId).orElse(null);
@@ -63,4 +78,6 @@ public class PostService {
         }
         return null;
     }
+
+
 }

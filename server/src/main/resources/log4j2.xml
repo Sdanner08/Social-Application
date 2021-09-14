@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-<!--        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout
                     pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
-        </Console>-->
+        </Console>
 
         <RollingFile name="RollingFile"
                      fileName="./logs/ocean-log4j2.log"
@@ -28,12 +28,12 @@
     <Loggers>
         <!-- LOG everything at INFO level -->
         <Root level="warn">
-           <!-- <AppenderRef ref="Console" />-->
+            <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Root>
 
 
-        <!-- LOG "com.ocean*" at debug level -->
+        <!-- LOG "com.ocean*" at warn level -->
         <Logger name="com.ocean" level="warn"></Logger>
 
 
