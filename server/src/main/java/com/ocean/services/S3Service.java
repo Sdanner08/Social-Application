@@ -5,9 +5,12 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.ocean.models.User;
+import com.ocean.models.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class S3Service {
 
@@ -40,11 +43,16 @@ public class S3Service {
     }
 
     //We'll need the bucket name whenever we try to upload something.
-
-    private String uploadFile(File file, String pathName){
+    // changed to return Response instead of String - Trevor
+    private Response uploadFile(File file, String pathName){
         System.out.println("S3service.uploadFile");
         s3Client.putObject(bucketName, pathName, file);
-        return bucketUrl+pathName;
+
+        // once the file is uploaded to amazon, we no longer need it on the server - Trevor
+        file.delete();
+
+        // changed to return response - Trevor
+        return new Response(true, "image uploaded",bucketUrl+pathName);
     }
 
     //The pathname example in kevin's explanation of this concept was:
@@ -59,26 +67,48 @@ public class S3Service {
     //Questions for later. For now, we know it works, and we're going to have this method return the file path so other
     //parts of the program can use it later.
 
-    public String uploadProfileImage(String username, File file){
+    // made same changes in this method and uploadImage() - Trevor
+    public Response uploadProfileImage(MultipartFile multipartFile){
+        File file = convertMultiPartFileToFile(multipartFile);
+        String fileName = multipartFile.getOriginalFilename();
+
         System.out.println("S3service.uploadProfileImage");
-        String pathName = "users/" + username + "/images/profile/" + file.getName();
+        String pathName = "users/images/profile/" + file.getName();
         return uploadFile(file, pathName);
     }
 
-    public String uploadImage(String username, File file){
+    public Response uploadImage(MultipartFile multipartFile){
+        // added these 2 lines to convert and get file name - Trevor
+        File file = convertMultiPartFileToFile(multipartFile);
+        String fileName = multipartFile.getOriginalFilename();
+
         System.out.println("S3service.uploadImage");
-        String pathName = "users/" + username + "/images/" + file.getName();
+        // no longer have the username here so adjusted pathName - Trevor
+        String pathName = "users/images/" + fileName;
         return uploadFile(file, pathName);
     }
 
-    public String uploadVideo(String username, File file){
+    // added this method for file conversion - Trevor
+    private File convertMultiPartFileToFile(MultipartFile file) {
+        File convertedFile = new File(file.getOriginalFilename());
+        try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return convertedFile;
+    }
+
+    // not using for now - Trevor
+    /*public String uploadVideo(String username, File file){
         System.out.println("S3service.uploadVideo");
         String pathName = "users/" + username + "/videos/" + file.getName();
         return uploadFile(file, pathName);
 
-    }
+    }*/
 
-    public String uploadProfileImage(User user, File file){
+    // Not using for now - Trevor
+    /*public String uploadProfileImage(User user, File file){
         return uploadProfileImage(user.getUsername(), file);
     }
 
@@ -88,6 +118,6 @@ public class S3Service {
 
     public String uploadVideo(User user, File file){
         return uploadVideo(user.getUsername(), file);
-    }
+    }*/
 
 }
