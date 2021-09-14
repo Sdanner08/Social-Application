@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController("postController")
 @RequestMapping(value= "api")
-//@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class PostController {
 
     private PostService postService;
@@ -34,6 +34,7 @@ public class PostController {
     }
 
     //Get All posts
+
     @GetMapping("feed/{pageNumber}")
     public Response getAllPost(@PathVariable Integer pageNumber, Pageable pageable){
         Response response;
@@ -45,6 +46,7 @@ public class PostController {
         }
         return response;
     }
+
     //Read a post
     @GetMapping("post/{postId}")
     public Response lookForAPost(@PathVariable Integer postId){

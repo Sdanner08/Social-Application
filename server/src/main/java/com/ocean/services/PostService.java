@@ -35,8 +35,8 @@ public class PostService {
         }
         return null;
     }
-    
-    
+
+
     //Read a post
     public Post getPostById(Integer postId) {
         return this.postDao.findById(postId).orElse(null);

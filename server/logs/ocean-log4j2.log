@@ -1,0 +1,5 @@
+2021-09-12 23:06:49,990 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-09-12 23:06:50,725 WARN c.o.Application [main] Warning level log message
+2021-09-12 23:06:50,726 ERROR c.o.Application [main] Error level log message
+2021-09-12 23:38:19,766 WARN o.s.s.c.b.BCryptPasswordEncoder [http-nio-9000-exec-5] Encoded password does not look like BCrypt
+2021-09-12 23:38:19,766 WARN o.s.s.c.b.BCryptPasswordEncoder [http-nio-9000-exec-6] Encoded password does not look like BCrypt
