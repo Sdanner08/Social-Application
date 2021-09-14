@@ -29,7 +29,7 @@ public class PostService {
 
     //Post for the Feed
     public Page<Post> getAllPosts(Integer pageNumber, Pageable pageable) {
-        Page<Post> allPosts = this.postDao.findAll(PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.ASC, "postTime")));
+        Page<Post> allPosts = this.postDao.findAll(PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "postTime")));
         if(allPosts != null){
             return allPosts;
         }
