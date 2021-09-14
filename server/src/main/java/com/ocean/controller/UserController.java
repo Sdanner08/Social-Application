@@ -1,7 +1,6 @@
 package com.ocean.controller;
 
-import com.ocean.models.Response;
-import com.ocean.models.User;
+import com.ocean.models.*;
 import com.ocean.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
