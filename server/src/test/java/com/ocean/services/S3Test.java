@@ -1,4 +1,4 @@
-package com.ocean.services;
+/*package com.ocean.services;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ public class S3Test {
     public void uploadImage(){
         File imageTest = new File("ImageTest.jpg");
 
-        System.out.println("PathName = " + s3.uploadImage("UploadImageTestUser", imageTest));
+     //   System.out.println("PathName = " + s3.uploadImage("UploadImageTestUser", imageTest));
     }
 
     @Test
@@ -28,4 +28,4 @@ public class S3Test {
         s3.uploadVideo("UploadVideoTestUser", videoTest);
     }
 
-}
+}*/

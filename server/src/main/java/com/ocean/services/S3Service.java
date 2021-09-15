@@ -6,24 +6,30 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.ocean.models.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@Service("s3Service")
 public class S3Service {
 
     //We'll probably need these to be environment variables when we deploy but while we're testing this is fine.
 
-    private String awsID = System.getenv("TEAMWATER_ACCESSKEY");
-    private String awsKey = System.getenv("TEAMWATER_SECRETKEY");
+    private String awsID = "AKIAVY6OVAQNLVTYUXTD";//System.getenv("TEAMWATER_ACCESSKEY");
+    private String awsKey = "dusmJiffnfpHQ/TQ+VLRUJuGK62256cRK3IRawB8";//System.getenv("TEAMWATER_SECRETKEY");
     private String region = "us-east-2";
     private String bucketName = "teamwaterbucket";
     private String bucketUrl = "https://teamwaterbucket.s3.us-east-2.amazonaws.com/";
 
     //https://teamwaterbucket.s3.us-east-2.amazonaws.com/users/UploadImageTestUser/images/ImageTest.jpg
     //PathName = users/UploadImageTestUser/images/ImageTest.jpg
+
+
 
     BasicAWSCredentials awsCredentials;
 
