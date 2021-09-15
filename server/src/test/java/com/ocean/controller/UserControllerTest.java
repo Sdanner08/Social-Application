@@ -37,20 +37,20 @@ class UserControllerTest {
         this.userController = new UserController(userService, emailService);
     }
 
-    @Test
+/*    @Test
     void checkSessionReturnNull() {
         //assign
-/*        HttpSession session = null;
+        HttpSession session = null;
         Response expectedResult = new Response(false, "session not found", null);
 
         User user = (User) session.getAttribute("loggedInUser");
 
         //act
-        Response actualResult = new Response(false, "session not found", null);
+        Response actualResult = this.userController.checkSession(session);
 
         //assert
-        assertEquals(expectedResult.toString(), actualResult.toString());*/
-    }
+        assertEquals(expectedResult.toString(), actualResult.toString());
+    }*/
 
     @Test
     void loginReturnNull() {

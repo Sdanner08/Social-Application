@@ -31,7 +31,7 @@ public class LikeService {
     }
 
 
-    public boolean deleteLike(Integer likeId) {
+    public Boolean deleteLike(Integer likeId) {
         boolean checkDelete = this.likeDao.existsById(likeId);
         if (checkDelete == true){
             this.likeDao.deleteById(likeId);

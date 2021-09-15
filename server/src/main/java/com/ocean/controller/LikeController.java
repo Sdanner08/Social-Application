@@ -42,17 +42,39 @@ public class LikeController {
     }
         return response;
 }
+
+    //Get like PostId and by UserId
+    @GetMapping("like/{postId}/{userId}")
+    public Response getLikeByPostIdAndUserID(@PathVariable Integer postId, @PathVariable Integer userId){
+       Response response;
+        boolean theyLikedIt = false;
+       List<Like> like = this.likeService.getLikeByPostId(postId);
+       for(Like a : like){
+           if(a.getUser().getUserId() == userId){
+               theyLikedIt = true;
+               System.out.println(a);
+           }
+       }
+        System.out.println(theyLikedIt);
+       if(theyLikedIt == false){
+           response = new Response(false, "They have not liked this post yet", false);
+       }else{
+           response = new Response(true, "They have already liked this post", true);
+       }
+       return response;
+    }
+
     //Delete a Like
     @DeleteMapping("like/{likeId}")
     public Response deleteLike(@PathVariable Integer likeId){
-            Response response;
-            Boolean deleteLike = this.likeService.deleteLike(likeId);
-            if(deleteLike == true){
-                response = new Response(true,"Your Like was removed", likeId);
-            }else{
-                response = new Response(false,"There was an error removing this like", likeId);
-            }
-            return response;
+        Response response;
+        Boolean deleteLike = this.likeService.deleteLike(likeId);
+        if(deleteLike == true){
+            response = new Response(true,"Your Like was removed", likeId);
+        }else{
+            response = new Response(false,"There was an error removing this like", likeId);
         }
+        return response;
+    }
 
 }

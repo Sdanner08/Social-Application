@@ -15,4 +15,8 @@ public interface LikeDao extends JpaRepository<Like, Integer> {
     //Custom Query to get the Post by the UserId
     @Query("from Like where post_id = :postId")
     List<Like> getLikesByPostId(@Param("postId") Integer postId);
+
+/*    @Query("from Like where post_id = :postId and user_id = :userId")
+    boolean getLikesByPostIdAndUserId(@Param("postId")Integer postId, @Param("userId") Integer userId);*/
+
 }
