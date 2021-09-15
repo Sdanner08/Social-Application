@@ -79,9 +79,9 @@ public class PostController {
         Response response;
         Post updatePost = this.postService.updatePost(post);
         if(updatePost != post){
-            response = new Response(false,"Profile has not been updated", post);
+            response = new Response(false,"Post has not been updated", post);
         }else{
-            response = new Response(true,"Profile has been updated",post);
+            response = new Response(true,"Post has been updated",post);
         }
         return response;
     }
@@ -94,7 +94,7 @@ public class PostController {
         if(deletePost != null){
             response = new Response(true,"Post was deleted", deletePost);
         }else{
-            response = new Response(false,"There was an error deleting this post", deletePost);
+            response = new Response(false,"There was an error deleting this post", null);
         }
         return response;
     }

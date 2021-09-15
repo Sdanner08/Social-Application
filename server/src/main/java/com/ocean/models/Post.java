@@ -49,7 +49,7 @@ public class Post {
     }
 
     //Modified Constructor
-    public Post(String postPicUrl, String postText) {
+    public Post(String postPic, String text, String postPicUrl, String postText, User tempUser) {
         this.postPicUrl = postPicUrl;
         this.postText = postText;
     }
