@@ -24,10 +24,6 @@ public class CommentService {
 
     public Comment findCommentById(Integer commentId) {
         return this.commentDao.findById(commentId).orElse(null);
-/*        if(commById != null){
-            return commById;
-        }
-        return null;*/
     }
 
     public List<Comment> findCommentByPostId(Integer postId) {
