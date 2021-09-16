@@ -3,6 +3,7 @@ package com.ocean.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,10 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    public EmailService(){
+        javaMailSender = new JavaMailSenderImpl();
+    }
 
     public String newPassword(){
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -55,6 +60,7 @@ public class EmailService {
     }
 
     public void welcomeEmail(String to, String firstName){
+        System.out.println("EmailService.welcomeEmail");
         SimpleMailMessage welcome = new SimpleMailMessage();
         welcome.setFrom("oceansocailapp@gmail.com");
         welcome.setTo(to);

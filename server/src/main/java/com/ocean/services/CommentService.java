@@ -54,7 +54,7 @@ public class CommentService {
 
     public Boolean deleteComment(Integer commentId) {
         boolean checkDelete = this.commentDao.existsById(commentId);
-        if(checkDelete == true){
+        if(checkDelete){
             this.commentDao.deleteById(commentId);
             return true;
         }

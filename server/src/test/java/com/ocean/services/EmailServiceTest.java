@@ -21,6 +21,7 @@ class EmailServiceTest {
 
     @BeforeEach
     void setUp() {
+        emailService = new EmailService();
     }
 
     @Test
@@ -38,9 +39,12 @@ class EmailServiceTest {
 
     @Test
     void sendNewPassword() {
+        //assertNotNull(emailService.sendNewPassword("david.burton@revature.net", "David"));
+        //Check your email, David!
     }
 
     @Test
     void welcomeEmail() {
+        //emailService.welcomeEmail("david.burton@revature.net", "David");
     }
 }
