@@ -79,7 +79,7 @@ public class S3Service {
         String fileName = multipartFile.getOriginalFilename();
 
         System.out.println("S3service.uploadProfileImage");
-        String pathName = "users/images/profile/" + file.getName();
+        String pathName = "users/images/profile/" + fileName;
         return uploadFile(file, pathName);
     }
 
@@ -100,7 +100,8 @@ public class S3Service {
         try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
             fos.write(file.getBytes());
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
+            System.out.println("Error in S3Service.convertMultiPartFileToFile");
         }
         return convertedFile;
     }

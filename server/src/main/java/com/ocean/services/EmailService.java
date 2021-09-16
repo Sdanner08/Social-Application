@@ -53,10 +53,8 @@ public class EmailService {
                 "\n");
         javaMailSender.send(message);
 
-        String bcPass = pass;
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encode = passwordEncoder.encode(bcPass);
-        return encode;
+        return passwordEncoder.encode(pass);
     }
 
     public void welcomeEmail(String to, String firstName){

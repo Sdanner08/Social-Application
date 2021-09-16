@@ -24,7 +24,7 @@ public class UserService {
         if(tempUser != null){
             //Checks to make sure their passwords match
             boolean isPasswordMatch = passwordEncoder.matches(user.getPassword(), tempUser.getPassword());
-            if(isPasswordMatch == true){
+            if(isPasswordMatch){
                 return tempUser;
             }
         }
@@ -53,11 +53,7 @@ public class UserService {
     //If User forgot login info
     public User forGotInfo(String username) {
         //check to see if user is already in database
-        User tempUser = checkForUser(username);
-        if(tempUser != null){
-            return tempUser;
-        }
-        return null;
+        return checkForUser(username);
     }
 
     //Will update User

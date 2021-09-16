@@ -20,7 +20,7 @@ public class FileUploadController {
 
     @PostMapping("/profile")
     public ResponseEntity<Response> uploadProfileImage(@RequestParam(value = "file")MultipartFile file) {
-        return new ResponseEntity<Response>(s3Service.uploadImage(file), HttpStatus.OK);
+        return new ResponseEntity<Response>(s3Service.uploadProfileImage(file), HttpStatus.OK);
     }
 
     @PostMapping("/image")

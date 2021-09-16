@@ -15,11 +15,7 @@ public class CommentService {
     public CommentService(CommentDao commentDao){this.commentDao = commentDao;}
 
     public Comment createComment(Comment comment) {
-        Comment tempComm = this.commentDao.save(comment);
-        if(tempComm != null){
-            return tempComm;
-        }
-        return null;
+        return this.commentDao.save(comment);
     }
 
     public Comment findCommentById(Integer commentId) {
@@ -27,19 +23,11 @@ public class CommentService {
     }
 
     public List<Comment> findCommentByPostId(Integer postId) {
-        List<Comment> commByPostId = this.commentDao.getCommentByPostId(postId);
-        if(commByPostId != null){
-            return commByPostId;
-        }
-        return null;
+        return this.commentDao.getCommentByPostId(postId);
     }
 
     public List<Comment> findCommentByUserId(Integer userId) {
-        List<Comment> commByUserId = this.commentDao.getCommentByUserId(userId);
-        if(commByUserId != null){
-            return commByUserId;
-        }
-        return null;
+        return this.commentDao.getCommentByUserId(userId);
     }
 
     public Comment updateComment(Comment comment) {

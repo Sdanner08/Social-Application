@@ -15,29 +15,20 @@ public class LikeService {
     public LikeService(LikeDao likeDao){this.likeDao = likeDao;}
 
     public Like createLike(Like like) {
-        Like tempLike = this.likeDao.save(like);
-        if(tempLike != null){
-            return tempLike;
-        }
-        return null;
+        return this.likeDao.save(like);
     }
 
     public List<Like> getLikeByPostId(Integer postId) {
-        List<Like> allLikesToThisPost = this.likeDao.getLikesByPostId(postId);
-        if(allLikesToThisPost != null){
-            return allLikesToThisPost;
-        }
-        return null;
+        return this.likeDao.getLikesByPostId(postId);
     }
 
 
     public Boolean deleteLike(Integer likeId) {
         boolean checkDelete = this.likeDao.existsById(likeId);
-        if (checkDelete == true){
+        if (checkDelete){
             this.likeDao.deleteById(likeId);
             return true;
         }
         return false;
     }
 }
-

@@ -50,13 +50,13 @@ public class LikeController {
         boolean theyLikedIt = false;
        List<Like> like = this.likeService.getLikeByPostId(postId);
        for(Like a : like){
-           if(a.getUser().getUserId() == userId){
+           if(a.getUser().getUserId().equals(userId)){
                theyLikedIt = true;
                System.out.println(a);
            }
        }
         System.out.println(theyLikedIt);
-       if(theyLikedIt == false){
+       if(!theyLikedIt){
            response = new Response(false, "They have not liked this post yet", false);
        }else{
            response = new Response(true, "They have already liked this post", true);
@@ -69,7 +69,7 @@ public class LikeController {
     public Response deleteLike(@PathVariable Integer likeId){
         Response response;
         Boolean deleteLike = this.likeService.deleteLike(likeId);
-        if(deleteLike == true){
+        if(deleteLike){
             response = new Response(true,"Your Like was removed", likeId);
         }else{
             response = new Response(false,"There was an error removing this like", likeId);

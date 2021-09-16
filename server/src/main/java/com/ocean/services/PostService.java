@@ -20,20 +20,12 @@ public class PostService {
 
     //Create a Post
     public Post createPost(Post post) {
-        Post tempPost = this.postDao.save(post);
-        if(tempPost != null){
-            return tempPost;
-        }
-        return null;
+        return this.postDao.save(post);
     }
 
     //Post for the Feed
     public Page<Post> getAllPosts(Integer pageNumber, Pageable pageable) {
-        Page<Post> allPosts = this.postDao.findAll(PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "postTime")));
-        if(allPosts != null){
-            return allPosts;
-        }
-        return null;
+        return this.postDao.findAll(PageRequest.of(pageNumber, 20, Sort.by(Sort.Direction.DESC, "postTime")));
     }
 
 
@@ -44,11 +36,7 @@ public class PostService {
 
     //Get Post by UserId
     public List<Post> getPostByUserId(Integer userId) {
-        List<Post> allThisUserPost = this.postDao.getPostByUserId(userId);
-        if(allThisUserPost != null){
-            return allThisUserPost;
-        }
-        return null;
+        return this.postDao.getPostByUserId(userId);
     }
 
     //Update a post
