@@ -60,14 +60,12 @@ public class LikeController {
        for(Like a : like){
            if(a.getUser().getUserId().equals(userId)){
                theyLikedIt = true;
-               System.out.println(a);
            }
        }
-        System.out.println(theyLikedIt);
        if(!theyLikedIt){
            response = new Response(false, "They have not liked this post yet", false);
        }else{
-           response = new Response(true, "They have already liked this post", true);
+           response = new Response(true, "They have already liked this post", like);
        }
        return response;
     }
