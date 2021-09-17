@@ -17,9 +17,10 @@ Social Application to connect with your friends
 ### Users Can :
 
 * Register
+  * Email with a welcome email.
 * Login/Logout.
 * Reset their password.
-  * Email feature.
+  * Email new password if they forgot password.
 * Modify their information.
 * Upload a profile picture (using AWS: S3).
 * Search other people.
@@ -57,12 +58,12 @@ Social Application to connect with your friends
 **BackEnd :**
 
 1) Spring MVC
-2) Hibernate or SpringORM or SpringData
+2) Hibernate
 3) Java
 4) Postgres
 5) AWS EC2
 6) AWS S3
-7) Junit/Mockito/H2?
+7) Junit/Mockito/H2
 8) Log4J
 9) Javadoc
 
@@ -75,8 +76,8 @@ Social Application to connect with your friends
 
 **Deployment :**
 
-1) AWS or Docker?
-2) Deploying the FrontEnd is it the same?
+1) AWS EC2
+
 
 
 
@@ -85,15 +86,16 @@ Social Application to connect with your friends
 ----Link to Diagram of Backend end result
 
 **Tests :**
-What are we testing?
 
-* Testing Tools?
+* Junit
+* Mockito
+* H2 (creates and drops after test)
 
 **Hibernate :**
 
 * Models
-* Database
-  ????
+* PostgreSQL
+
 
 **Register, Models and database**
 
@@ -123,10 +125,9 @@ What are we testing?
 |      **Add Post**       |    `POST /api/CreatePost`     |
 |     **Delete Post**     |    `POST /api/DeletePost`     |
 |     **Add Comment**     |    `POST /api/PostComment`    |
-|  **Add YouTube Video**  |                               |
-|   **Show All Posts**    |                               |
-| **Show Filtered Posts** |                               |
-
+|   **Show All Posts**    |     `GET /api/feed`           |
+|   **Posts By PostId**   |   `GET /api/post/{postId}`    |
+|   **Posts By UserId**   |`GET /api/post/userId/{userId}`|
 
 
 ### Models (Need to finalize this list)
@@ -134,7 +135,8 @@ What are we testing?
 **User Model**
 
 * Integer Id: serial
-* String name not null
+* String firstname not null
+* String lastname not null
 * String username Unique not null
 * String password not null
 * String email Unique not null
@@ -144,11 +146,11 @@ What are we testing?
 
 **Post Model**
 
-* Integer Id: serial
+* Integer postId: serial
 * String picUrl not null
 * String PostText char(250) not null
+* Date postTime
 * Integer UserFK reference User id
-* YouTube link??????
 
 **Comment Model**
 
@@ -157,12 +159,11 @@ What are we testing?
 * Integer PostIdFK:
 * Integer UserIdFK:			
   	
+**Like Composite Model**
 
-**Like Composite Model**?????
-
-* Shane 
-
-
+* Integer likeId: serial
+* Integer PostIdFK:
+* Integer UserIdFK:	
 
 ## Frontend Requirements
 
@@ -194,94 +195,3 @@ What are we testing?
    - Text- when we create the post
   - Like it
   - comment on (Optional)
-
-
-
-## Delivery Day
-
-* 9/4)	(weekend - Optional Day off)
-  	(Design flow)
-  	(set up repo - branches)
-  	(set up communication paths we want to talk to each other)
-  	(Jenkins --Are we using it? this would need groovy??)
-  1) David - Discord Server set up
-  2) Shane - Repo set up
-  3) Angel -
-  4) Trevor -
-
-* 9/5) (weekend - Optional Day off) (Coding start)
-  1. David - 
-  2. Shane -
-  3. Angel -
-  4. Trevor -
-
-* 9/6)	(Models, Database, Dao, DaoImpl, ???? delivery) (Rough idea of Frontend look)
-  1) David - AWS Setup (Dao, DaoImp depending on spring)
-  2) Shane - Models, Database, H2
-  3) Angel - We will need to deploy Angular as well...
-  4) Trevor -
-
-* 9/7)	(Rough set up of front end) (Connection endpoints delivered)
-  1) David - 
-  2) Shane - endpoints??
-  3) Angel -
-  4) Trevor -
-* 9/8)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/9)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/10)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/11)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/12)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/13)
-  1. David - 
-  2. Shane -
-  3. Angel -
-  4. Trevor -
-
-* 9/14)(debugging)
-  1) David -
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/15)(deployment)
-  1) David - 
-  2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/16)(presentation coordination)
-  1) David - 
-   2) Shane -
-  3) Angel -
-  4) Trevor -
-
-* 9/17) This is Presentation Day
-  1. David - 
-  2. Shane -
-  3. Angel -
-  4. Trevor -
