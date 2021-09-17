@@ -9,7 +9,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @RestController("postController")
 @RequestMapping(value= "api")
 @CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")

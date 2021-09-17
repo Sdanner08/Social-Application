@@ -37,21 +37,6 @@ class UserControllerTest {
         this.userController = new UserController(userService, emailService);
     }
 
-/*    @Test
-    void checkSessionReturnNull() {
-        //assign
-        HttpSession session = null;
-        Response expectedResult = new Response(false, "session not found", null);
-
-        User user = (User) session.getAttribute("loggedInUser");
-
-        //act
-        Response actualResult = this.userController.checkSession(session);
-
-        //assert
-        assertEquals(expectedResult.toString(), actualResult.toString());
-    }*/
-
     @Test
     void loginReturnNull() {
         //assign
@@ -169,17 +154,13 @@ class UserControllerTest {
         String name = "shane";
         String email = "testing@email.com";
         Response expectedResult = new Response(true, "An email has been sent to this account holder", tempUser.getEmail());
-
         //Mock
         Mockito.when(userService.forGotInfo(name)).thenReturn(tempUser);
-      //  Mockito.when(emailService.sendNewPassword(email, name)).thenReturn(tempUser.getPassword());
-        //Mockito.when(userService.updateUser(tempUser)).thenReturn(tempUser);
         //act
         Response actualResult = this.userController.forGotInfo(name);
         //assert
         assertEquals(expectedResult.toString(), actualResult.toString());
-      //  Mockito.verify(emailService,Mockito.times(1)).sendNewPassword(email, name);
-        //Mockito.verify(userService,Mockito.times(1)).updateUser(tempUser);
+
     }
 
     @Test

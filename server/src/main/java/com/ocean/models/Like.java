@@ -2,7 +2,15 @@ package com.ocean.models;
 
 import lombok.*;
 import javax.persistence.*;
-
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

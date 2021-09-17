@@ -36,15 +36,4 @@ class EmailServiceTest {
         sb.toString();
         assertEquals(sb.length(), 10);
     }
-
-    @Test
-    void sendNewPassword() {
-        //assertNotNull(emailService.sendNewPassword("david.burton@revature.net", "David"));
-        //Check your email, David!
-    }
-
-    @Test
-    void welcomeEmail() {
-        //emailService.welcomeEmail("david.burton@revature.net", "David");
-    }
 }
