@@ -1,7 +1,15 @@
 package com.ocean.models;
 
 import lombok.*;
-
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

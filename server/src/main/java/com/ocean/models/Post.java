@@ -1,9 +1,19 @@
 package com.ocean.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
-
-
+import java.util.Date;
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @Getter
 @Setter
 @ToString
@@ -24,6 +34,10 @@ public class Post {
     @Column(name="postText", nullable=false)
     private String postText;
 
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    private Date postTime;
+
     @Column(name="postYouUrl") //youtube url link
     private String postYouUrl;
 
@@ -41,7 +55,7 @@ public class Post {
     }
 
     //Modified Constructor
-    public Post(String postPicUrl, String postText) {
+    public Post(String postPic, String text, String postPicUrl, String postText, User tempUser) {
         this.postPicUrl = postPicUrl;
         this.postText = postText;
     }

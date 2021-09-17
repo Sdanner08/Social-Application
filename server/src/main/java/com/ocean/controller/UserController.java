@@ -1,22 +1,33 @@
 package com.ocean.controller;
 
-import com.ocean.models.Response;
-import com.ocean.models.User;
+import com.ocean.models.*;
+import com.ocean.services.EmailService;
 import com.ocean.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-
+import java.util.List;
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @RestController("userController")
 @RequestMapping(value= "api")
-/*@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")*/
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class UserController {
 
     private UserService userService;
+    private EmailService emailService;
 
     @Autowired
-    public UserController(UserService userService){ this.userService = userService;}
+    public UserController(UserService userService, EmailService emailService){ this.userService = userService; this.emailService = emailService;}
+
 
     //Creates a Session for the user logged in
     @GetMapping("check-session")
@@ -24,6 +35,7 @@ public class UserController {
         Response response;
         User user = (User) session.getAttribute("loggedInUser");
         if(user != null){
+            user.setPassword(null);
             response = new Response(true,"session found", user);
         }else{
             response = new Response(false, "session not found", null);
@@ -32,12 +44,13 @@ public class UserController {
     }
 
     //Checks to see if user is in database other wise it'll reject their log in
-    @GetMapping("login")
+    @PostMapping("login")
     public Response login (HttpSession session, @RequestBody User user) {
         Response response;
         User tempUser = this.userService.login(user);
         if (tempUser != null) {
             session.setAttribute("loggedInUser", user);
+            tempUser.setPassword(null);
             response = new Response(true, "logged In and session created", tempUser);
         } else {
             response = new Response(false, "Invalid username or password. (Remember, these are case sensitive!)",null);
@@ -58,9 +71,24 @@ public class UserController {
         Response response;
         User tempUser = this.userService.createUser(user);
         if (tempUser != null) {
+            this.emailService.welcomeEmail(tempUser.getEmail(), tempUser.getFirstName());
+            user.setPassword(null);
             response = new Response(true, "user has been created", user);
         } else {
             response = new Response(false, "This User already exists", null);
+        }
+        return response;
+    }
+
+    //Get all users
+    @GetMapping("user")
+    public Response getAllUsers(){
+        Response response;
+        List<User> allUsers = this.userService.getAllUsers();
+        if(allUsers != null){
+            response = new Response(true, "here are all the users", allUsers);
+        } else {
+            response = new Response(false, "Failed to find", null);
         }
         return response;
     }
@@ -70,9 +98,10 @@ public class UserController {
     public Response forGotInfo(@PathVariable String username){
         Response response;
         User tempUser = this.userService.forGotInfo(username);
-
         if(tempUser != null){
-            ///need to add email stuff here
+            String pass = this.emailService.sendNewPassword(tempUser.getEmail(), tempUser.getFirstName());
+            tempUser.setPassword(pass);
+            this.userService.updateUser(tempUser);
             response = new Response(true, "An email has been sent to this account holder", tempUser.getEmail());
         }else{
             response = new Response(false, "There is no user by the username:" + username, null);
@@ -81,14 +110,12 @@ public class UserController {
     }
 
     //Will update the profile of this user
-    ////////////////////////I have to check to see if this works
     @PutMapping("updateUser")
     public Response updateUser(@RequestBody User user){
         Response response;
         User updateUser = this.userService.updateUser(user);
         if(updateUser == user){
-            System.out.println("--------------90------------------");
-            System.out.println(updateUser);
+            user.setPassword(null);
             return new Response(true,"Profile has been updated",user);
         }else{
             return new Response(false,"Profile has not been updated", null);
@@ -101,6 +128,7 @@ public class UserController {
         Response response;
         User user = (User) this.userService.getUserById(id);
         if(user != null){
+            user.setPassword(null);
             response = new Response(true, "Here is the user", user);
         }else{
             response = new Response(false, "User was not found",null);
