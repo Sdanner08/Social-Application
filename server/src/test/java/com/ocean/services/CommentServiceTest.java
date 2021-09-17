@@ -58,19 +58,6 @@ class CommentServiceTest {
         assertEquals(tempComm, acctualResult);
     }
 
-/*    @Test
-    void findCommentByIdReturnNull() {
-        User tempUser = new User("Shane", "Password");
-        tempUser.setUserId(1);
-        Post post = new Post("postPic","postText","null","postUrl",tempUser);
-        post.setPostId(1);
-        Comment tempComm = new Comment(1,"Testing",post,tempUser);
-
-        Mockito.when(commentDao.findById(tempComm.getCommentId())).thenReturn(null);
-
-        Comment acctualResult = this.commentService.findCommentById(1);
-        assertNotEquals(tempComm, acctualResult);
-    }*/
     @Test
     void findCommentByIdReturnNotNull() {
         User tempUser = new User("Shane", "Password");
@@ -84,21 +71,6 @@ class CommentServiceTest {
         Comment acctualResult = this.commentService.findCommentById(1);
         assertEquals(tempComm, acctualResult);
     }
-
-/*    @Test
-    void findCommentByPostId() {
-        User tempUser = new User("Shane", "Password");
-        tempUser.setUserId(1);
-        Post post = new Post("postPic","postText","null","postUrl",tempUser);
-        post.setPostId(1);
-        List<Comment> tempComm = new ArrayList<>();
-        tempComm.add(new Comment(1,"Testing",post,tempUser));
-
-        Mockito.when(commentDao.findById(post.getPostId())).equals(tempComm);
-
-        List<Comment> acctualResult = this.commentService.findCommentByPostId(post.getPostId());
-        assertEquals(tempComm, acctualResult);
-    }*/
 
 
     @Test
@@ -129,19 +101,6 @@ class CommentServiceTest {
         List<Comment> acctualResult = this.commentService.findCommentByUserId(tempUser.getUserId());
         assertEquals(tempComm, acctualResult);
     }
-
-/*    @Test
-    void updateComment() {
-        User tempUser = new User("Shane", "Password");
-        tempUser.setUserId(1);
-        Post post = new Post("postPic","postText","null","postUrl",tempUser);
-        post.setPostId(1);
-        Comment tempComm = new Comment(1,"Testing",post,tempUser);
-        Mockito.when(commentDao.findById(tempComm.getCommentId())).thenReturn(null);
-
-        Comment acctualResult = this.commentService.updateComment(tempComm);
-        assertNotEquals(tempComm, acctualResult);
-    }*/
 
     @Test
     void deleteCommentReturnNull() {

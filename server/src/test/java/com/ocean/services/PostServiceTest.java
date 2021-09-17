@@ -59,22 +59,6 @@ class PostServiceTest {
 
     }
 
-/*    @Test
-    void getPostByIdReturnNull() {
-        //assign
-        User tempUser = new User("Shane", "Password");
-        tempUser.setUserId(1);
-        Post post = new Post("postPic","postText","null","postUrl",tempUser);
-        post.setPostId(1);
-        Post expectedResult = new Post();
-        //Mock
-        Mockito.when(postDao.findById(post.getPostId())).thenReturn(null);
-        //act
-        Post actualResult = this.postService.getPostById(post.getPostId());
-        //assert
-        Mockito.verify(postDao, Mockito.times(1)).findById(post.getPostId());
-    }*/
-
     @Test
     void getPostByUserIdReturnNull() {
         //assign
@@ -107,28 +91,4 @@ class PostServiceTest {
         assertEquals(expectedResult, actualResult);
     }
 
-/*    @Test
-    void updatePost() {
-        //assign
-        User tempUser = new User("Shane", "Password");
-        tempUser.setUserId(1);
-        Post post = new Post("postPic","postText","null","postUrl",tempUser);
-        post.setPostId(1);
-        List<Post> expectedResult = new ArrayList<>();
-        expectedResult.add(post);
-        //Mock
-        Mockito.when(postDao.getPostByUserId(tempUser.getUserId())).thenReturn(expectedResult);
-        //act
-        List<Post> actualResult = this.postService.getPostByUserId(tempUser.getUserId());
-        //assert
-        assertEquals(expectedResult, actualResult);
-    }*/
-
-/*    @Test
-    void deletePost() {
-        Mockito.when(postDao.findById(1)).thenReturn(null);
-        boolean expectedResult = false;
-        Post actualResult = this.postService.deletePost(1);
-        assertEquals(expectedResult, actualResult);
-    }*/
 }

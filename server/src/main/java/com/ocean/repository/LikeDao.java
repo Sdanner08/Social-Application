@@ -8,7 +8,15 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @Repository("likeDao")
 @Transactional
 public interface LikeDao extends JpaRepository<Like, Integer> {

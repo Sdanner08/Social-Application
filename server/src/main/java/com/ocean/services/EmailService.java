@@ -6,10 +6,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.security.SecureRandom;
-
-
+/*
+ *    @author
+ *      Front End:
+ *        -Angel Walker
+ *       -Trevor Drury
+ *       Back End:
+ *        -David Burton
+ *        -Shane Danner
+ */
 @Service("emailService")
 public class EmailService {
 

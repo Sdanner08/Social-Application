@@ -1,11 +1,18 @@
 package com.ocean;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+/*
+*    @author
+*      Front End:
+*        -Angel Walker
+*       -Trevor Drury
+*       Back End:
+*        -David Burton
+*        -Shane Danner
+ */
 
 
 @SpringBootApplication

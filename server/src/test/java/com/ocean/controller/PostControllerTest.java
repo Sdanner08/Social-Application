@@ -66,21 +66,6 @@ class PostControllerTest {
         assertEquals(expectedResult.toString(), actualResult.toString());
     }
 
-/*   @Test
-    void getAllPostReturnNull() {
-        //assign
-        Page<Post> allPosts = null;
-        Response expectedResult = new Response(false,"failed to find that page",null);
-
-        //Mock
-        Mockito.when(postService.getAllPosts(1, Pageable.unpaged())).thenReturn(null);
-        //act
-
-        Response actualResult = this.postController.getAllPost(1, (Pageable) allPosts);
-        //assert
-        assertEquals(expectedResult.toString(), actualResult.toString());
-    }*/
-
     @Test
     void lookForAPostReturnNull() {
         //assign
