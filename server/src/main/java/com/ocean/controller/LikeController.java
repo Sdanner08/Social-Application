@@ -57,15 +57,17 @@ public class LikeController {
        Response response;
         boolean theyLikedIt = false;
        List<Like> like = this.likeService.getLikeByPostId(postId);
+       Integer likeId = 0;
        for(Like a : like){
            if(a.getUser().getUserId().equals(userId)){
                theyLikedIt = true;
+               likeId = a.getLikeId();
            }
        }
        if(!theyLikedIt){
            response = new Response(false, "They have not liked this post yet", false);
        }else{
-           response = new Response(true, "They have already liked this post", like);
+           response = new Response(true, "They have already liked this post", likeId);
        }
        return response;
     }
