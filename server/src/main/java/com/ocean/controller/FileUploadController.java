@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController("fileUploadController")
 @RequestMapping(value= "api")
-@CrossOrigin(value = "http://oceanappbucket.s3-website-us-east-1.amazonaws.com/", allowCredentials = "true")
+@CrossOrigin(value = "http://localhost:4200/", allowCredentials = "true")
 public class FileUploadController {
 
     private S3Service s3Service;
